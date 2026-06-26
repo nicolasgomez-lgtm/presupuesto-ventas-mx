@@ -1,3 +1,4 @@
+[README.md](https://github.com/user-attachments/files/29394962/README.md)
 # Presupuesto Ventas México — Julio 2026 · Foodology
 
 Herramienta web para simular el presupuesto de ventas con palancas comerciales compartidas.
