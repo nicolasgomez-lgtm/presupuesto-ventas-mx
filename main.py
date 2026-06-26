@@ -3,7 +3,6 @@ import os
 from pathlib import Path
 from datetime import datetime, timezone
 from fastapi import FastAPI, HTTPException
-from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel
 from typing import List, Any
@@ -146,12 +145,11 @@ def refresh_data():
     return {"ok": True, "rows": len(compact), "updated_at": meta["updated_at"]}
 
 # ── Static frontend ──────────────────────────────────────
-app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
 
 @app.get("/")
 def index():
-    return FileResponse(BASE_DIR / "static" / "index.html")
+    return FileResponse(BASE_DIR / "index.html")
 
 @app.get("/{full_path:path}")
 def catch_all(full_path: str):
-    return FileResponse(BASE_DIR / "static" / "index.html")
+    return FileResponse(BASE_DIR / "index.html")
