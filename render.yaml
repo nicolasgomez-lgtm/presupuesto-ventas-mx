@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: presupuesto-ventas-mx
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    disk:
+      name: levers-data
+      mountPath: /opt/render/project/src
+      sizeGB: 1
+    envVars:
+      - key: REDSHIFT_HOST
+        sync: false   # set manually in Render dashboard
+      - key: REDSHIFT_PORT
+        value: "5439"
+      - key: REDSHIFT_DATABASE
+        sync: false
+      - key: REDSHIFT_USER
+        sync: false
+      - key: REDSHIFT_PASSWORD
+        sync: false

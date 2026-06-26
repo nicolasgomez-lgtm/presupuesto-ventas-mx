@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Presupuesto Ventas MX — Julio 2026 | Foodology</title>
+<style>
+:root{color-scheme:light}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#f0f2f5;color:#1a1a2e;font-size:13px}
+.wrap{max-width:1300px;margin:0 auto;padding:16px}
+
+.hdr{background:linear-gradient(135deg,#006847,#004d35);color:#fff;padding:18px 22px;border-radius:10px;margin-bottom:14px;display:flex;align-items:flex-start;gap:14px}
+.hdr-flag{font-size:38px;line-height:1;margin-top:2px}
+.hdr h1{font-size:18px;font-weight:700;letter-spacing:-.3px}
+.hdr p{font-size:11px;opacity:.7;margin-top:4px;line-height:1.5}
+.hdr-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.badge{display:inline-block;background:rgba(255,255,255,.18);border-radius:4px;padding:2px 9px;font-size:10px;white-space:nowrap}
+.badge.green{background:rgba(100,255,150,.25)}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-bottom:14px}
+.card{background:#fff;border-radius:8px;padding:13px 15px;box-shadow:0 1px 4px rgba(0,0,0,.07);border-top:3px solid #4361ee}
+.card.g{border-top-color:#28a745}.card.r{border-top-color:#dc3545}.card.o{border-top-color:#ff9f43}.card.teal{border-top-color:#17a2b8}
+.cl{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.5px}
+.cv{font-size:21px;font-weight:700;margin-top:4px;line-height:1}
+.cs{font-size:11px;color:#999;margin-top:4px}
+.cd{font-size:12px;font-weight:600;margin-top:3px}
+.cd.p{color:#28a745}.cd.n{color:#dc3545}
+
+.panel{background:#fff;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.07);margin-bottom:14px;overflow:hidden}
+.ph{padding:10px 16px;border-bottom:1px solid #f0f0f0;font-weight:600;font-size:13px;display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;background:#fafbff}
+.ph:hover{background:#f2f4ff}
+.pt{margin-left:auto;font-size:10px;color:#bbb}
+.pb{padding:14px 16px}
+
+/* DOW strip */
+.dow-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:14px}
+.dow-card{background:#fff;border-radius:7px;padding:10px 8px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.07)}
+.dow-card.strong{border-top:3px solid #4361ee}
+.dow-card.normal{border-top:3px solid #dde}
+.dow-name{font-size:10px;color:#888;text-transform:uppercase;font-weight:600;letter-spacing:.3px}
+.dow-count{font-size:18px;font-weight:700;color:#1a1a2e;margin:3px 0}
+.dow-count span{font-size:11px;font-weight:400;color:#aaa}
+.dow-avg{font-size:11px;color:#4361ee;font-weight:600}
+
+/* Lever form */
+.lev-form{background:#f8f9ff;border:1px solid #e0e4ff;border-radius:8px;padding:14px;margin-bottom:14px}
+.lev-form-title{font-size:12px;font-weight:700;color:#4361ee;margin-bottom:12px;letter-spacing:.3px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px;align-items:end}
+.fg label{font-size:10px;color:#666;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px}
+.fg input,.fg select{width:100%;padding:7px 8px;border:1px solid #dde;border-radius:5px;font-size:12px;background:#fff;outline:none}
+.fg input:focus,.fg select:focus{border-color:#4361ee}
+.btn-add{padding:0 18px;background:#4361ee;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700;height:34px;white-space:nowrap;align-self:end}
+.btn-add:hover{background:#3451de}
+
+.lev-list{width:100%;border-collapse:collapse;font-size:12px;margin-top:2px}
+.lev-list th{background:#1a1a2e;color:#fff;padding:7px 10px;text-align:left;font-size:11px;font-weight:600}
+.lev-list td{padding:6px 10px;border-bottom:1px solid #f0f0f0;vertical-align:middle}
+.lev-list tr:nth-child(even){background:#f8f9ff}
+.lev-list tr:hover{background:#eef0ff}
+.btn-del{background:#fee;border:1px solid #fcc;color:#c00;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px;white-space:nowrap}
+.btn-del:hover{background:#fdd}
+.empty-lev{text-align:center;color:#bbb;padding:18px;font-size:12px}
+
+.sum-wrap{overflow-x:auto}
+.sum-table{width:100%;border-collapse:collapse;font-size:12px}
+.sum-table th{background:#1a1a2e;color:#fff;padding:7px 10px;text-align:left;font-size:11px;font-weight:600;white-space:nowrap;cursor:pointer;user-select:none}
+.sum-table th.r{text-align:right}.sum-table th:hover{background:#2d2d50}
+.sum-table td{padding:6px 10px;border-bottom:1px solid #f2f2f2}
+.sum-table td.r{text-align:right;font-variant-numeric:tabular-nums}
+.sum-table tr:nth-child(even){background:#f8f9ff}
+.sum-table tr:hover{background:#eef0ff}
+.sum-table tfoot td{font-weight:700;background:#eef0ff;border-top:2px solid #4361ee}
+
+.tag{display:inline-block;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700}
+.t-rappi{background:#ff6900;color:#fff}.t-didi{background:#ff4d00;color:#fff}
+.t-uber{background:#1a1a2e;color:#fff}.t-justo{background:#00b341;color:#fff}
+.t-pos{background:#4361ee;color:#fff}.t-pedidos{background:#fa2d48;color:#fff}
+
+.dp{color:#28a745;font-weight:600}.dn{color:#dc3545;font-weight:600}.d0{color:#aaa}
+
+.filters{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;padding:12px 16px;border-bottom:1px solid #f0f0f0;background:#fafbff}
+
+.dtbl{width:100%;border-collapse:collapse;font-size:12px}
+.dtbl th{background:#1a1a2e;color:#fff;padding:8px 10px;text-align:left;font-size:11px;font-weight:600;white-space:nowrap;cursor:pointer;user-select:none}
+.dtbl th.r{text-align:right}.dtbl th:hover{background:#2d2d50}
+.dtbl td{padding:6px 10px;border-bottom:1px solid #f2f2f2}
+.dtbl td.r{text-align:right;font-variant-numeric:tabular-nums}
+.dtbl td.adj{font-weight:700}
+.dtbl tr:nth-child(even){background:#f8f9ff}.dtbl tr:hover{background:#eef0ff}
+
+.pager{display:flex;align-items:center;gap:8px;padding:10px 16px;border-top:1px solid #f0f0f0;background:#fafbff;font-size:12px}
+.pager button{padding:5px 12px;border:1px solid #dde;border-radius:5px;background:#fff;cursor:pointer;font-size:12px}
+.pager button:hover:not(:disabled){background:#f0f2ff;border-color:#4361ee;color:#4361ee}
+.pager button:disabled{opacity:.35;cursor:not-allowed}
+.pager .pi{color:#888;margin:0 4px}.pager .tr{margin-left:auto;color:#888}
+
+.actions{display:flex;gap:8px;padding:10px 16px;border-top:1px solid #f0f0f0}
+.btn{padding:7px 16px;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600}
+.btn-blue{background:#4361ee;color:#fff}.btn-blue:hover{background:#3451de}
+.btn-gray{background:#e9ecef;color:#555}.btn-gray:hover{background:#dde}
+
+.loading{text-align:center;padding:48px;color:#888}
+.spinner{display:inline-block;width:28px;height:28px;border:3px solid #eee;border-top-color:#4361ee;border-radius:50%;animation:spin .75s linear infinite;margin-bottom:10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.note{font-size:10px;color:#bbb;padding:6px 16px 10px}
+.pct-pill{font-size:10px;background:#f0f0f0;padding:1px 5px;border-radius:8px;color:#666}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hdr">
+  <div class="hdr-flag">🇲🇽</div>
+  <div>
+    <h1>Presupuesto de Ventas México — Julio 2026</h1>
+    <p>Base: promedio por día de la semana (últimas 3 semanas) × ocurrencias de ese día en julio.<br>
+    Julio tiene 5 miércoles, 5 jueves y 5 viernes — el presupuesto los pondera correctamente.</p>
+    <div class="hdr-badges">
+      <span class="badge">MXN · Snapshot Redshift (actualizado: 2026-06-26)</span>
+      <span class="badge green">✓ Palancas compartidas entre todo el equipo</span>
+      <span class="badge green">✓ DOW-weighted · sin inflación por combos inactivos</span>
+      <span class="badge" id="data-date-badge" style="cursor:pointer" onclick="refreshData()" title="Haz clic para actualizar datos">🔄 Datos al: <span id="data-date-label">cargando…</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- Refresh banner -->
+<div id="refresh-banner" style="display:none;background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:10px 16px;margin-bottom:14px;display:none;align-items:center;gap:10px;font-size:12px">
+  <span style="font-size:16px">📅</span>
+  <span>Estás en la <strong>última semana del mes</strong> — buen momento para actualizar el presupuesto base con los datos más recientes.</span>
+  <button id="btn-refresh" onclick="refreshData()" style="margin-left:auto;padding:6px 14px;background:#4361ee;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700;white-space:nowrap">🔄 Actualizar datos</button>
+</div>
+<div id="refresh-status" style="display:none;background:#e8f8ee;border:1px solid #b2dfdb;border-radius:8px;padding:10px 16px;margin-bottom:14px;font-size:12px;flex-direction:row;align-items:center;gap:8px">
+  <span style="font-size:15px">✅</span>
+  <span id="refresh-msg"></span>
+</div>
+
+<!-- Cards -->
+<div id="cards" class="cards">
+  <div class="card"><div class="cl">Cargando…</div><div class="cv" style="color:#ccc">—</div></div>
+</div>
+
+<!-- DOW strip -->
+<div class="dow-strip" id="dow-strip">
+  <!-- populated after load -->
+</div>
+
+<!-- Palancas Comerciales -->
+<div class="panel">
+  <div class="ph" onclick="togglePanel('lev-panel')">
+    🎚️ Palancas Comerciales
+    <span style="margin-left:8px;font-size:11px;color:#4361ee;font-weight:400" id="lev-badge"></span>
+    <span class="pt" id="lev-panel-t">▼</span>
+  </div>
+  <div id="lev-panel" class="pb" style="display:none">
+    <div class="lev-form">
+      <div class="lev-form-title" id="lev-form-title">➕ AGREGAR PALANCA COMERCIAL</div>
+      <div class="form-grid">
+        <div class="fg">
+          <label>Nombre / Descripción</label>
+          <input type="text" id="lv-name" placeholder="Ej: Promo Día del Niño">
+        </div>
+        <div class="fg">
+          <label>Fecha Inicio (Julio)</label>
+          <input type="date" id="lv-start" min="2026-07-01" max="2026-07-31" value="2026-07-01">
+        </div>
+        <div class="fg">
+          <label>Fecha Fin (Julio)</label>
+          <input type="date" id="lv-end" min="2026-07-01" max="2026-07-31" value="2026-07-31">
+        </div>
+        <div class="fg">
+          <label>Plataforma</label>
+          <select id="lv-platform"><option value="">Todas las plataformas</option></select>
+        </div>
+        <div class="fg">
+          <label>Marca</label>
+          <select id="lv-brand"><option value="">Todas las marcas</option></select>
+        </div>
+        <div class="fg">
+          <label>Ciudad</label>
+          <select id="lv-city"><option value="">Nacional (todas)</option></select>
+        </div>
+        <div class="fg">
+          <label>Cocina</label>
+          <select id="lv-kitchen"><option value="">Todas las cocinas</option></select>
+        </div>
+        <div class="fg">
+          <label>Tipo de Ajuste</label>
+          <select id="lv-type" onchange="toggleLevType()">
+            <option value="pct">% Porcentaje</option>
+            <option value="abs">MXN Absoluto</option>
+          </select>
+        </div>
+        <div class="fg" id="fg-pct">
+          <label>% Ajuste en Ventas</label>
+          <input type="number" id="lv-pct" placeholder="Ej: 15" step="0.5">
+        </div>
+        <div class="fg" id="fg-abs" style="display:none">
+          <label>Monto Total MXN (todo el período)</label>
+          <input type="number" id="lv-abs" placeholder="Ej: 400000" step="1000">
+          <div style="font-size:10px;color:#888;margin-top:3px">Se suma al total del período, no por día.</div>
+        </div>
+        <div class="fg" style="display:flex;align-items:flex-end;gap:6px">
+          <button class="btn-add" id="btn-add-lev" onclick="addLever()">+ Agregar</button>
+          <button class="btn-add" id="btn-cancel-lev" onclick="cancelEdit()" style="display:none;background:#e9ecef;color:#555">✕ Cancelar</button>
+        </div>
+      </div>
+    </div>
+    <div id="lev-table-wrap">
+      <div class="empty-lev">No hay palancas activas. Agrégalas arriba para simular el impacto.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Daily breakdown -->
+<div class="panel">
+  <div class="ph" onclick="togglePanel('daily-panel')">📅 Desglose Diario — Julio 2026<span class="pt" id="daily-panel-t">▼</span></div>
+  <div id="daily-panel" style="display:none">
+    <div class="sum-wrap">
+      <table class="sum-table">
+        <thead><tr>
+          <th>Día</th>
+          <th>Semana</th>
+          <th class="r">Base</th>
+          <th class="r">Ajustado</th>
+          <th class="r">Δ vs Base</th>
+          <th class="r">Δ%</th>
+          <th style="min-width:120px">Barra</th>
+        </tr></thead>
+        <tbody id="daily-body"><tr><td colspan="7" style="text-align:center;color:#bbb;padding:18px">Cargando…</td></tr></tbody>
+        <tfoot id="daily-foot"></tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Summary: Ciudad -->
+<div class="panel">
+  <div class="ph" onclick="togglePanel('sum-city')">🏙️ Resumen por Ciudad<span class="pt" id="sum-city-t">▼</span></div>
+  <div id="sum-city" style="display:none"><div class="loading"><div class="spinner"></div><div>Cargando…</div></div></div>
+</div>
+
+<!-- Summary: Marca -->
+<div class="panel">
+  <div class="ph" onclick="togglePanel('sum-brand')">🏷️ Resumen por Marca<span class="pt" id="sum-brand-t">▼</span></div>
+  <div id="sum-brand" style="display:none"><div class="loading"><div class="spinner"></div><div>Cargando…</div></div></div>
+</div>
+
+<!-- Summary: Plataforma -->
+<div class="panel">
+  <div class="ph" onclick="togglePanel('sum-plat')">📱 Resumen por Plataforma<span class="pt" id="sum-plat-t">▼</span></div>
+  <div id="sum-plat" style="display:none"><div class="loading"><div class="spinner"></div><div>Cargando…</div></div></div>
+</div>
+
+<!-- Summary: Cocina -->
+<div class="panel">
+  <div class="ph" onclick="togglePanel('sum-kitchen')">🍳 Resumen por Cocina<span class="pt" id="sum-kitchen-t">▼</span></div>
+  <div id="sum-kitchen" style="display:none"><div class="loading"><div class="spinner"></div><div>Cargando…</div></div></div>
+</div>
+
+<!-- Detail -->
+<div class="panel">
+  <div class="ph">📋 Detalle: Cocina · Marca · Plataforma</div>
+  <div class="filters">
+    <div class="fg">
+      <label>Ciudad</label>
+      <select id="f-city" onchange="applyFilters()"><option value="">Todas</option></select>
+    </div>
+    <div class="fg">
+      <label>Plataforma</label>
+      <select id="f-plat" onchange="applyFilters()"><option value="">Todas</option></select>
+    </div>
+    <div class="fg">
+      <label>Cocina</label>
+      <input type="text" id="f-kitchen" placeholder="Buscar…" oninput="applyFilters()">
+    </div>
+    <div class="fg">
+      <label>Marca</label>
+      <input type="text" id="f-brand" placeholder="Buscar…" oninput="applyFilters()">
+    </div>
+  </div>
+  <div style="overflow-x:auto" id="tbl-wrap">
+    <div class="loading"><div class="spinner"></div><div>Consultando warehouse…</div></div>
+  </div>
+  <div class="pager" id="pager" style="display:none">
+    <button id="btn-p" onclick="goPg(-1)">← Anterior</button>
+    <span class="pi" id="pg-info"></span>
+    <button id="btn-n" onclick="goPg(1)">Siguiente →</button>
+    <span class="tr">Total: <strong id="trow-count">0</strong> filas</span>
+  </div>
+  <div class="actions">
+    <button class="btn btn-blue" onclick="dlCSV()">⬇ Exportar CSV</button>
+  </div>
+  <div class="note">
+    Método: avg_DOW = SUM(GMV del día de semana) ÷ 3 ocurrencias en ventana · Base Julio = Σ avg_DOW × ocurrencias en julio ·
+    Julio 2026: Dom×4 Lun×4 Mar×4 Mié×5 Jue×5 Vie×5 Sáb×4 = 31 días ·
+    Solo México · Órdenes Finalized · D-21 a D-1
+  </div>
+</div>
+</div>
+
+<script>
+// ── Constants ──────────────────────────────────────────
+// July 2026: Jul 1 = Wednesday (DOW=3)
+// DOW counts in July 2026: [Sun=4, Mon=4, Tue=4, Wed=5, Thu=5, Fri=5, Sat=4]
+const JUL_DOW_COUNT = [4, 4, 4, 5, 5, 5, 4]; // index = JS getDay() (0=Sun)
+const DOW_NAMES = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+const DOW_NAMES_FULL = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+
+// Pre-compute which DOW each July day is
+const JUL_DAYS_DOW = Array.from({length:31}, (_,i) => new Date(2026,6,i+1).getDay());
+
+// ── State ──────────────────────────────────────────────
+let allData = [], filteredData = [];
+let pg = 1; const PG = 100;
+let sCol = 7, sDir = -1;
+let leverList = [], nextLevId = 1, editingLeverId = null;
+let globalDowAvg = [0,0,0,0,0,0,0]; // avg per DOW across all MEX
+let sumSortState = { city:[1,-1], brand:[1,-1], plat:[1,-1], kitchen:[1,-1] };
+
+// ── Refresh button logic ───────────────────────────────
+function isLastWeekOfMonth() {
+  const d = new Date();
+  const lastDay = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+  return d.getDate() >= lastDay - 6;
+}
+
+async function loadMeta() {
+  try {
+    const resp = await fetch('/api/meta');
+    if (!resp.ok) return;
+    const meta = await resp.json();
+    const dt = new Date(meta.updated_at);
+    const label = dt.toLocaleDateString('es-MX', { day:'2-digit', month:'short', year:'numeric' });
+    document.getElementById('data-date-label').textContent = label;
+    if (isLastWeekOfMonth()) {
+      const banner = document.getElementById('refresh-banner');
+      banner.style.display = 'flex';
+    }
+  } catch(e) { document.getElementById('data-date-label').textContent = 'desconocido'; }
+}
+
+async function refreshData() {
+  const btn = document.getElementById('btn-refresh');
+  const badge = document.getElementById('data-date-badge');
+  if (btn) { btn.textContent = '⏳ Actualizando…'; btn.disabled = true; }
+  badge.style.opacity = '0.5';
+  document.getElementById('refresh-status').style.display = 'none';
+  try {
+    const resp = await fetch('/api/refresh', { method: 'POST' });
+    const result = await resp.json();
+    if (!resp.ok) throw new Error(result.detail || 'Error del servidor');
+    const dt = new Date(result.updated_at);
+    const label = dt.toLocaleDateString('es-MX', { day:'2-digit', month:'short', year:'numeric' });
+    document.getElementById('data-date-label').textContent = label;
+    document.getElementById('refresh-msg').textContent =
+      `Datos actualizados correctamente — ${result.rows.toLocaleString()} combos cargados al ${label}.`;
+    document.getElementById('refresh-status').style.display = 'flex';
+    document.getElementById('refresh-banner').style.display = 'none';
+    // Reload budget data
+    await loadData();
+  } catch(e) {
+    document.getElementById('refresh-msg').textContent = '❌ Error al actualizar: ' + e.message;
+    document.getElementById('refresh-status').style.backgroundColor = '#fdecea';
+    document.getElementById('refresh-status').style.borderColor = '#f5c6cb';
+    document.getElementById('refresh-status').style.display = 'flex';
+  } finally {
+    if (btn) { btn.textContent = '🔄 Actualizar datos'; btn.disabled = false; }
+    badge.style.opacity = '1';
+  }
+}
+
+// ── Load ───────────────────────────────────────────────
+async function loadData() {
+  try {
+    // Load static budget snapshot from server
+    const resp = await fetch('/api/data');
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const rows = await resp.json(); // array of arrays: [kitchen,brand,platform,city,avg0..avg6,base]
+
+    if (!rows || !rows.length) { showErr('Sin datos en el servidor.'); return; }
+
+    allData = rows.map(row => ({
+      kitchen: row[0]||'', brand: row[1]||'', platform: row[2]||'', city: row[3]||'',
+      avg0: +row[4]||0, avg1: +row[5]||0, avg2: +row[6]||0,
+      avg3: +row[7]||0, avg4: +row[8]||0, avg5: +row[9]||0, avg6: +row[10]||0,
+      base: +row[11]||0
+    }));
+
+    // Compute global DOW averages
+    for (let d=0; d<7; d++) {
+      globalDowAvg[d] = allData.reduce((s,r) => s + (r['avg'+d]||0), 0);
+    }
+
+    // Load shared levers from server
+    await loadLevers();
+
+    initDropdowns();
+    applyFilters();
+    loadMeta();
+  } catch(e) { showErr('Error al cargar: ' + e.message); }
+}
+
+// ── Shared levers API ──────────────────────────────────
+async function loadLevers() {
+  try {
+    const resp = await fetch('/api/levers');
+    if (!resp.ok) return;
+    const data = await resp.json();
+    leverList = data.levers || [];
+    nextLevId = leverList.length ? Math.max(...leverList.map(l=>l.id)) + 1 : 1;
+  } catch(e) { console.warn('No se pudieron cargar palancas:', e); }
+}
+
+async function saveLeversToServer() {
+  try {
+    await fetch('/api/levers', {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ levers: leverList })
+    });
+  } catch(e) { console.warn('Error guardando palancas:', e); }
+}
+
+function showErr(msg) {
+  document.getElementById('tbl-wrap').innerHTML = `<div class="loading"><p style="color:#dc3545">${msg}</p></div>`;
+  document.getElementById('cards').innerHTML = `<div class="card r"><div class="cl">Error</div><div class="cv" style="font-size:13px;color:#dc3545">${msg}</div></div>`;
+}
+
+// ── Adjusted value (DOW-aware lever math) ─────────────
+function rowMatches(lv, row) {
+  return (lv.platform === '' || lv.platform === row.platform) &&
+         (lv.brand    === '' || lv.brand    === row.brand) &&
+         (lv.city     === '' || lv.city     === row.city) &&
+         (lv.kitchen  === '' || lv.kitchen  === row.kitchen);
+}
+
+// Pre-compute for each abs lever: total base of all matching rows in the lever period.
+// This lets adjRow distribute absValue proportionally so the TOTAL across all rows = absValue.
+function precomputeLeverShares() {
+  leverList.forEach(lv => {
+    if (lv.type !== 'abs') return;
+    let totalBase = 0, count = 0;
+    allData.forEach(row => {
+      if (!rowMatches(lv, row)) return;
+      count++;
+      for (let d = lv.startDay; d <= lv.endDay; d++) {
+        totalBase += row['avg' + JUL_DAYS_DOW[d-1]] || 0;
+      }
+    });
+    lv._matchingTotalBase = totalBase;
+    lv._matchingCount = count;
+  });
+}
+
+function adjRow(row) {
+  if (!leverList.length) return row.base;
+  let total = 0;
+  for (let day = 1; day <= 31; day++) {
+    const dow = JUL_DAYS_DOW[day-1];
+    const dayAvg = row['avg'+dow] || 0;
+    let mult = 1;
+    let add  = 0;
+    leverList.forEach(lv => {
+      if (day >= lv.startDay && day <= lv.endDay && rowMatches(lv, row)) {
+        if (lv.type === 'pct') {
+          mult *= (1 + lv.pct / 100);
+        } else {
+          // abs: absValue is the TOTAL for ALL matching rows combined.
+          // Distribute proportionally by each row's base GMV in the lever period,
+          // then evenly across lever days → summing all rows × all days = exactly absValue.
+          const leverDays = lv.endDay - lv.startDay + 1;
+          let share;
+          if (lv._matchingTotalBase > 0) {
+            let rowPeriodBase = 0;
+            for (let d2 = lv.startDay; d2 <= lv.endDay; d2++) {
+              rowPeriodBase += row['avg' + JUL_DAYS_DOW[d2-1]] || 0;
+            }
+            share = rowPeriodBase / lv._matchingTotalBase;
+          } else {
+            share = lv._matchingCount > 0 ? 1 / lv._matchingCount : 0;
+          }
+          add += lv.absValue * share / leverDays;
+        }
+      }
+    });
+    total += dayAvg * mult + add;
+  }
+  return total;
+}
+
+// ── Lever type toggle ──────────────────────────────────
+function toggleLevType() {
+  const type = document.getElementById('lv-type').value;
+  document.getElementById('fg-pct').style.display = type === 'pct' ? '' : 'none';
+  document.getElementById('fg-abs').style.display = type === 'abs' ? '' : 'none';
+}
+
+// ── Levers ─────────────────────────────────────────────
+function addLever() {
+  const name    = document.getElementById('lv-name').value.trim() || ('Palanca ' + nextLevId);
+  const start   = document.getElementById('lv-start').value;
+  const end     = document.getElementById('lv-end').value;
+  const type    = document.getElementById('lv-type').value;
+  const pctRaw  = document.getElementById('lv-pct').value;
+  const absRaw  = document.getElementById('lv-abs').value;
+  const plat    = document.getElementById('lv-platform').value;
+  const brand   = document.getElementById('lv-brand').value;
+  const city    = document.getElementById('lv-city').value;
+  const kitchen = document.getElementById('lv-kitchen').value;
+
+  if (!start||!end) { alert('Selecciona fechas de inicio y fin.'); return; }
+  const sd = +start.split('-')[2], ed = +end.split('-')[2];
+  if (sd > ed) { alert('Fecha inicio debe ser ≤ fecha fin.'); return; }
+
+  let newLev;
+  if (type === 'pct') {
+    if (pctRaw===''||isNaN(parseFloat(pctRaw))) { alert('Ingresa un porcentaje de ajuste.'); return; }
+    newLev = { name, startDay:sd, endDay:ed, type:'pct', pct:parseFloat(pctRaw), platform:plat, brand, city, kitchen };
+  } else {
+    if (absRaw===''||isNaN(parseFloat(absRaw))) { alert('Ingresa un monto en MXN.'); return; }
+    newLev = { name, startDay:sd, endDay:ed, type:'abs', absValue:parseFloat(absRaw), platform:plat, brand, city, kitchen };
+  }
+
+  if (editingLeverId !== null) {
+    const idx = leverList.findIndex(l => l.id === editingLeverId);
+    if (idx !== -1) leverList[idx] = { ...newLev, id: editingLeverId };
+    editingLeverId = null;
+    document.getElementById('lev-form-title').textContent = '➕ AGREGAR PALANCA COMERCIAL';
+    document.getElementById('btn-add-lev').textContent = '+ Agregar';
+    document.getElementById('btn-cancel-lev').style.display = 'none';
+  } else {
+    leverList.push({ ...newLev, id: nextLevId++ });
+  }
+
+  document.getElementById('lv-name').value     = '';
+  document.getElementById('lv-pct').value      = '';
+  document.getElementById('lv-abs').value      = '';
+  document.getElementById('lv-platform').value = '';
+  document.getElementById('lv-brand').value    = '';
+  document.getElementById('lv-city').value     = '';
+  document.getElementById('lv-kitchen').value  = '';
+  refreshAll();
+  saveLeversToServer();
+}
+
+function removeLever(id) {
+  if (editingLeverId === id) cancelEdit();
+  leverList = leverList.filter(l => l.id !== id);
+  refreshAll();
+  saveLeversToServer();
+}
+
+function editLever(id) {
+  const lv = leverList.find(l => l.id === id);
+  if (!lv) return;
+  editingLeverId = id;
+  document.getElementById('lv-name').value     = lv.name;
+  document.getElementById('lv-start').value    = '2026-07-' + String(lv.startDay).padStart(2,'0');
+  document.getElementById('lv-end').value      = '2026-07-' + String(lv.endDay).padStart(2,'0');
+  document.getElementById('lv-type').value     = lv.type;
+  document.getElementById('lv-platform').value = lv.platform;
+  document.getElementById('lv-brand').value    = lv.brand;
+  document.getElementById('lv-city').value     = lv.city;
+  document.getElementById('lv-kitchen').value  = lv.kitchen;
+  if (lv.type === 'pct') {
+    document.getElementById('lv-pct').value = lv.pct;
+    document.getElementById('lv-abs').value = '';
+  } else {
+    document.getElementById('lv-abs').value = lv.absValue;
+    document.getElementById('lv-pct').value = '';
+  }
+  toggleLevType();
+  document.getElementById('lev-form-title').textContent = '✏️ EDITANDO: ' + lv.name;
+  document.getElementById('btn-add-lev').textContent = '✓ Actualizar';
+  document.getElementById('btn-cancel-lev').style.display = '';
+  document.getElementById('lv-name').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function cancelEdit() {
+  editingLeverId = null;
+  document.getElementById('lv-name').value     = '';
+  document.getElementById('lv-pct').value      = '';
+  document.getElementById('lv-abs').value      = '';
+  document.getElementById('lv-platform').value = '';
+  document.getElementById('lv-brand').value    = '';
+  document.getElementById('lv-city').value     = '';
+  document.getElementById('lv-kitchen').value  = '';
+  document.getElementById('lev-form-title').textContent = '➕ AGREGAR PALANCA COMERCIAL';
+  document.getElementById('btn-add-lev').textContent = '+ Agregar';
+  document.getElementById('btn-cancel-lev').style.display = 'none';
+}
+
+function renderLeverTable() {
+  const badge = document.getElementById('lev-badge');
+  badge.textContent = leverList.length ? `(${leverList.length} activa${leverList.length>1?'s':''})` : '';
+  if (!leverList.length) {
+    document.getElementById('lev-table-wrap').innerHTML = '<div class="empty-lev">No hay palancas activas. Agrégalas arriba para simular el impacto.</div>';
+    return;
+  }
+  let h = `<table class="lev-list"><thead><tr>
+    <th>Nombre</th><th>Fechas (Julio)</th><th>Días</th>
+    <th>Tipo</th><th>Valor</th>
+    <th>Plataforma</th><th>Marca</th><th>Ciudad</th><th>Cocina</th>
+    <th style="text-align:right">Impacto est.</th><th></th>
+  </tr></thead><tbody>`;
+  leverList.forEach(lv => {
+    const dias = lv.endDay - lv.startDay + 1;
+    // Estimate impact on matched rows
+    const matchedRows = (filteredData.length?filteredData:allData).filter(r => rowMatches(lv,r));
+    let impact = 0;
+    if (lv.type === 'pct') {
+      const matchedBase = matchedRows.reduce((s,r) => {
+        let ds = 0;
+        for (let day=lv.startDay; day<=lv.endDay; day++) ds += r['avg'+JUL_DAYS_DOW[day-1]]||0;
+        return s + ds;
+      }, 0);
+      impact = matchedBase * lv.pct / 100;
+    } else {
+      // abs: impact = absValue if any rows match, 0 otherwise
+      impact = matchedRows.length > 0 ? lv.absValue : 0;
+    }
+    const iColor = impact >= 0 ? '#28a745' : '#dc3545';
+    const iSign  = impact >= 0 ? '+' : '';
+    // Value display
+    let valDisplay, valColor;
+    if (lv.type === 'pct') {
+      const s = lv.pct >= 0 ? '+' : '';
+      valColor = lv.pct >= 0 ? '#28a745' : '#dc3545';
+      valDisplay = `${s}${lv.pct}%`;
+    } else {
+      const s = lv.absValue >= 0 ? '+' : '';
+      valColor = lv.absValue >= 0 ? '#28a745' : '#dc3545';
+      valDisplay = `${s}$${fmtN(Math.round(lv.absValue))}`;
+    }
+    const typeLabel = lv.type === 'pct'
+      ? '<span style="background:#e8f0fe;color:#4361ee;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700">%</span>'
+      : '<span style="background:#e8f8ee;color:#28a745;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700">MXN</span>';
+    h += `<tr>
+      <td><strong>${esc(lv.name)}</strong></td>
+      <td>Jul ${lv.startDay} — Jul ${lv.endDay}</td>
+      <td>${dias}d</td>
+      <td>${typeLabel}</td>
+      <td style="font-weight:700;color:${valColor};white-space:nowrap">${valDisplay}</td>
+      <td>${lv.platform||'<span style="color:#bbb">Todas</span>'}</td>
+      <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(lv.brand)}">${lv.brand||'<span style="color:#bbb">Todas</span>'}</td>
+      <td>${lv.city||'<span style="color:#bbb">Nacional</span>'}</td>
+      <td style="max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(lv.kitchen)}">${lv.kitchen||'<span style="color:#bbb">Todas</span>'}</td>
+      <td style="text-align:right;font-weight:700;color:${iColor}">${iSign}${fmtN(Math.round(impact))}</td>
+      <td style="white-space:nowrap">
+        <button class="btn-del" style="background:#e8f0fe;border-color:#c5d3ff;color:#4361ee;margin-right:3px" onclick="editLever(${lv.id})">✏️</button>
+        <button class="btn-del" onclick="removeLever(${lv.id})">✕</button>
+      </td>
+    </tr>`;
+  });
+  h += '</tbody></table>';
+  document.getElementById('lev-table-wrap').innerHTML = h;
+}
+
+// ── Dropdowns ──────────────────────────────────────────
+function initDropdowns() {
+  const plats    = [...new Set(allData.map(d=>d.platform))].sort();
+  const brands   = [...new Set(allData.map(d=>d.brand))].sort();
+  const cities   = [...new Set(allData.map(d=>d.city))].sort();
+  const kitchens = [...new Set(allData.map(d=>d.kitchen))].sort();
+  fillSel('lv-platform', plats);
+  fillSel('lv-brand', brands);
+  fillSel('lv-city', cities);
+  fillSel('lv-kitchen', kitchens);
+  fillSel('f-city', cities);
+  fillSel('f-plat', plats);
+}
+function fillSel(id, vals) {
+  const el = document.getElementById(id); if(!el) return;
+  while(el.options.length>1) el.remove(1);
+  vals.forEach(v => el.add(new Option(v,v)));
+}
+
+// ── Filters ────────────────────────────────────────────
+function applyFilters() {
+  const city = document.getElementById('f-city').value;
+  const plat = document.getElementById('f-plat').value;
+  const kit  = document.getElementById('f-kitchen').value.toLowerCase();
+  const br   = document.getElementById('f-brand').value.toLowerCase();
+  filteredData = allData.filter(d =>
+    (!city || d.city===city) && (!plat || d.platform===plat) &&
+    (!kit  || d.kitchen.toLowerCase().includes(kit)) &&
+    (!br   || d.brand.toLowerCase().includes(br))
+  );
+  pg = 1;
+  refreshAll();
+}
+
+// ── Refresh all ────────────────────────────────────────
+function refreshAll() {
+  precomputeLeverShares();
+  renderCards();
+  renderDowStrip();
+  renderLeverTable();
+  renderDailyBreakdown();
+  renderSummary('city');
+  renderSummary('brand');
+  renderSummary('plat');
+  renderSummary('kitchen');
+  renderTable();
+}
+
+// ── Cards ──────────────────────────────────────────────
+function renderCards() {
+  const data = filteredData.length ? filteredData : allData;
+  const baseTotal = data.reduce((s,d)=>s+d.base,0);
+  const adjTotal  = data.reduce((s,d)=>s+adjRow(d),0);
+  const delta = adjTotal - baseTotal;
+  const dpct  = baseTotal > 0 ? delta/baseTotal*100 : 0;
+  const kits  = new Set(data.map(d=>d.kitchen)).size;
+  const brs   = new Set(data.map(d=>d.brand)).size;
+  const plts  = new Set(data.map(d=>d.platform)).size;
+  const avgDay= baseTotal / 31;
+
+  let h = `
+    <div class="card">
+      <div class="cl">📦 Base Julio (DOW)</div>
+      <div class="cv">${fmt(baseTotal)}</div>
+      <div class="cs">~${fmt(avgDay)}/día promedio</div>
+    </div>
+    <div class="card ${delta>=0?'g':'r'}">
+      <div class="cl">🎯 Ajustado con Palancas</div>
+      <div class="cv">${fmt(adjTotal)}</div>
+      <div class="cd ${delta>=0?'p':'n'}">${delta>=0?'+':''}${fmt(delta)} (${dpct.toFixed(1)}%)</div>
+    </div>
+    <div class="card o">
+      <div class="cl">🎚️ Palancas Activas</div>
+      <div class="cv">${leverList.length}</div>
+      <div class="cs">${leverList.length ? leverList.map(l=>`<span class="pct-pill">${l.pct>=0?'+':''}${l.pct}%</span>`).join(' ') : 'Sin palancas'}</div>
+    </div>
+    <div class="card teal">
+      <div class="cl">🏭 Cobertura</div>
+      <div class="cv">${kits}</div>
+      <div class="cs">${brs} marcas · ${plts} plataformas</div>
+    </div>`;
+  document.getElementById('cards').innerHTML = h;
+}
+
+// ── DOW strip ──────────────────────────────────────────
+function renderDowStrip() {
+  const data = filteredData.length ? filteredData : allData;
+  const dowTotals = Array(7).fill(0);
+  for (let d=0; d<7; d++) dowTotals[d] = data.reduce((s,r)=>s+(r['avg'+d]||0),0);
+  const maxAvg = Math.max(...dowTotals);
+  let h = '';
+  for (let d=0; d<7; d++) {
+    const cnt = JUL_DOW_COUNT[d];
+    const isStrong = cnt === 5;
+    const contrib = dowTotals[d] * cnt;
+    h += `<div class="dow-card ${isStrong?'strong':'normal'}">
+      <div class="dow-name">${DOW_NAMES[d]}</div>
+      <div class="dow-count">${cnt}<span>× en Jul</span></div>
+      <div class="dow-avg">${fmt(contrib)}</div>
+    </div>`;
+  }
+  document.getElementById('dow-strip').innerHTML = h;
+}
+
+// ── Daily breakdown ────────────────────────────────────
+function adjRowDay(row, day) {
+  // Returns the adjusted GMV contribution of this row for a specific July day
+  const dow = JUL_DAYS_DOW[day-1];
+  const dayAvg = row['avg'+dow] || 0;
+  let mult = 1, add = 0;
+  leverList.forEach(lv => {
+    if (day >= lv.startDay && day <= lv.endDay && rowMatches(lv, row)) {
+      if (lv.type === 'pct') {
+        mult *= (1 + lv.pct / 100);
+      } else {
+        const leverDays = lv.endDay - lv.startDay + 1;
+        let share;
+        if (lv._matchingTotalBase > 0) {
+          let rowPeriodBase = 0;
+          for (let d2 = lv.startDay; d2 <= lv.endDay; d2++) rowPeriodBase += row['avg' + JUL_DAYS_DOW[d2-1]] || 0;
+          share = rowPeriodBase / lv._matchingTotalBase;
+        } else {
+          share = lv._matchingCount > 0 ? 1 / lv._matchingCount : 0;
+        }
+        add += lv.absValue * share / leverDays;
+      }
+    }
+  });
+  return dayAvg * mult + add;
+}
+
+function renderDailyBreakdown() {
+  const el = document.getElementById('daily-panel');
+  if (!el || el.style.display === 'none') return;
+  const data = filteredData.length ? filteredData : allData;
+  if (!data.length) return;
+
+  // Compute base and adj per day
+  const days = [];
+  let maxAdj = 0;
+  for (let day = 1; day <= 31; day++) {
+    const dow = JUL_DAYS_DOW[day-1];
+    const base = data.reduce((s, r) => s + (r['avg'+dow] || 0), 0);
+    const adj  = data.reduce((s, r) => s + adjRowDay(r, day), 0);
+    days.push({ day, dow, base, adj });
+    if (adj > maxAdj) maxAdj = adj;
+  }
+  const totBase = days.reduce((s,d)=>s+d.base,0);
+  const totAdj  = days.reduce((s,d)=>s+d.adj,0);
+  const totDelta = totAdj - totBase;
+  const totDpct  = totBase > 0 ? totDelta/totBase*100 : 0;
+
+  let h = '';
+  days.forEach(({day, dow, base, adj}) => {
+    const delta = adj - base;
+    const dpct  = base > 0 ? delta/base*100 : 0;
+    const dc    = delta > 0.5 ? 'dp' : delta < -0.5 ? 'dn' : 'd0';
+    const isStrong = JUL_DOW_COUNT[dow] === 5;
+    const barPct = maxAdj > 0 ? Math.round(adj / maxAdj * 100) : 0;
+    const barAdj = maxAdj > 0 ? Math.round(base / maxAdj * 100) : 0;
+    const hasLev = leverList.length > 0 && Math.abs(delta) > 0.5;
+    h += `<tr style="${isStrong ? 'background:#f5f7ff' : ''}">
+      <td><strong>Jul ${day}</strong></td>
+      <td><span style="display:inline-block;background:${isStrong?'#4361ee':'#e9ecef'};color:${isStrong?'#fff':'#666'};padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;white-space:nowrap">${DOW_NAMES[dow]}${isStrong?' ★':''}</span></td>
+      <td class="r" style="color:#888">${fmtN(Math.round(base))}</td>
+      <td class="r" style="font-weight:700">${fmtN(Math.round(adj))}</td>
+      <td class="r ${dc}">${delta>=0?'+':''}${fmtN(Math.round(delta))}</td>
+      <td class="r ${dc}">${dpct>=0?'+':''}${dpct.toFixed(1)}%</td>
+      <td style="padding:6px 10px;min-width:120px">
+        <div style="position:relative;height:14px;background:#f0f2f5;border-radius:3px;overflow:hidden">
+          <div style="position:absolute;left:0;top:0;height:100%;width:${barAdj}%;background:#c5d3ff;border-radius:3px"></div>
+          ${hasLev ? `<div style="position:absolute;left:0;top:0;height:100%;width:${barPct}%;background:${delta>=0?'#4361ee':'#dc3545'};border-radius:3px;opacity:0.7"></div>` : `<div style="position:absolute;left:0;top:0;height:100%;width:${barPct}%;background:#4361ee;border-radius:3px;opacity:0.5"></div>`}
+        </div>
+      </td>
+    </tr>`;
+  });
+  document.getElementById('daily-body').innerHTML = h;
+
+  const dc = totDelta >= 0 ? 'dp' : 'dn';
+  document.getElementById('daily-foot').innerHTML = `<tr>
+    <td colspan="2" style="font-weight:700;background:#eef0ff;border-top:2px solid #4361ee">TOTAL JULIO</td>
+    <td class="r" style="font-weight:700;background:#eef0ff;border-top:2px solid #4361ee">${fmtN(Math.round(totBase))}</td>
+    <td class="r" style="font-weight:700;background:#eef0ff;border-top:2px solid #4361ee">${fmtN(Math.round(totAdj))}</td>
+    <td class="r ${dc}" style="font-weight:700;background:#eef0ff;border-top:2px solid #4361ee">${totDelta>=0?'+':''}${fmtN(Math.round(totDelta))}</td>
+    <td class="r ${dc}" style="font-weight:700;background:#eef0ff;border-top:2px solid #4361ee">${totDpct>=0?'+':''}${totDpct.toFixed(1)}%</td>
+    <td style="background:#eef0ff;border-top:2px solid #4361ee"></td>
+  </tr>`;
+}
+
+// ── Summaries ──────────────────────────────────────────
+function aggBy(key, extraFn) {
+  const data = filteredData.length ? filteredData : allData;
+  const map = {};
+  data.forEach(d => {
+    const k = d[key];
+    if (!map[k]) map[k] = { key:k, base:0, adj:0, extra: extraFn?extraFn(d):'' };
+    map[k].base += d.base;
+    map[k].adj  += adjRow(d);
+  });
+  return Object.values(map);
+}
+
+function sumTableHTML(rows, colDefs, tableId) {
+  if (!rows.length) return '<div class="loading"><p>Sin datos</p></div>';
+  const [sortIdx, sortDir] = sumSortState[tableId];
+  const sortKey = colDefs[sortIdx]?.key || 'adj';
+  const sorted = [...rows].sort((a,b) => {
+    const av=a[sortKey], bv=b[sortKey];
+    return sortDir * (typeof av==='string' ? av.localeCompare(bv) : av-bv);
+  });
+  const totBase = sorted.reduce((s,r)=>s+r.base,0);
+  const totAdj  = sorted.reduce((s,r)=>s+r.adj,0);
+  const totDelta= totAdj-totBase;
+  const totDpct = totBase>0?totDelta/totBase*100:0;
+
+  let h = '<div class="sum-wrap"><table class="sum-table"><thead><tr>';
+  colDefs.forEach((c,i) => {
+    const arr = sortIdx===i?(sortDir===1?' ↑':' ↓'):'';
+    h += `<th class="${c.r?'r':''}" onclick="setSumSort('${tableId}',${i})">${c.label}${arr}</th>`;
+  });
+  h += '</tr></thead><tbody>';
+  sorted.forEach(row => {
+    const d    = row.adj - row.base;
+    const dpct = row.base>0?d/row.base*100:0;
+    const dc   = d>0.5?'dp':d<-0.5?'dn':'d0';
+    const share= totAdj>0?row.adj/totAdj*100:0;
+    h += '<tr>';
+    colDefs.forEach(c => {
+      if (c.type==='key')    h += `<td>${esc(row.key)}</td>`;
+      else if (c.type==='extra') h += `<td>${esc(row.extra)}</td>`;
+      else if (c.type==='tag')  h += `<td><span class="tag ${platTag(row.key)}">${esc(row.key)}</span></td>`;
+      else if (c.key==='base')  h += `<td class="r">${fmtN(row.base)}</td>`;
+      else if (c.key==='adj')   h += `<td class="r" style="font-weight:700">${fmtN(Math.round(row.adj))}</td>`;
+      else if (c.key==='delta') h += `<td class="r ${dc}">${d>=0?'+':''}${fmtN(Math.round(d))}</td>`;
+      else if (c.key==='dpct')  h += `<td class="r ${dc}">${dpct>=0?'+':''}${dpct.toFixed(1)}%</td>`;
+      else if (c.key==='share') h += `<td class="r" style="color:#888">${share.toFixed(1)}%</td>`;
+    });
+    h += '</tr>';
+  });
+  h += '</tbody><tfoot><tr>';
+  colDefs.forEach(c => {
+    if (c.type==='key'||c.type==='extra'||c.type==='tag') h += '<td>TOTAL</td>';
+    else if (c.key==='base')  h += `<td class="r">${fmtN(totBase)}</td>`;
+    else if (c.key==='adj')   h += `<td class="r">${fmtN(Math.round(totAdj))}</td>`;
+    else if (c.key==='delta') h += `<td class="r ${totDelta>=0?'dp':'dn'}">${totDelta>=0?'+':''}${fmtN(Math.round(totDelta))}</td>`;
+    else if (c.key==='dpct')  h += `<td class="r ${totDpct>=0?'dp':'dn'}">${totDpct>=0?'+':''}${totDpct.toFixed(1)}%</td>`;
+    else h += '<td></td>';
+  });
+  h += '</tr></tfoot></table></div>';
+  return h;
+}
+
+function renderSummary(type) {
+  const panelId = 'sum-' + (type==='plat'?'plat':type==='brand'?'brand':type==='kitchen'?'kitchen':'city');
+  const el = document.getElementById(panelId);
+  if (!el || el.style.display==='none') return; // lazy render
+
+  let rows, cols;
+  if (type==='city') {
+    rows = aggBy('city', null);
+    cols = [
+      {label:'Ciudad',key:'key',type:'key'},
+      {label:'Base Julio',key:'base',r:true},{label:'Ajustado',key:'adj',r:true},
+      {label:'Δ vs Base',key:'delta',r:true},{label:'Δ%',key:'dpct',r:true},{label:'% Total',key:'share',r:true}
+    ];
+  } else if (type==='brand') {
+    rows = aggBy('brand', null);
+    cols = [
+      {label:'Marca',key:'key',type:'key'},
+      {label:'Base Julio',key:'base',r:true},{label:'Ajustado',key:'adj',r:true},
+      {label:'Δ vs Base',key:'delta',r:true},{label:'Δ%',key:'dpct',r:true},{label:'% Total',key:'share',r:true}
+    ];
+  } else if (type==='plat') {
+    rows = aggBy('platform', null).map(r=>({...r, key:r.key}));
+    cols = [
+      {label:'Plataforma',key:'key',type:'tag'},
+      {label:'Base Julio',key:'base',r:true},{label:'Ajustado',key:'adj',r:true},
+      {label:'Δ vs Base',key:'delta',r:true},{label:'Δ%',key:'dpct',r:true},{label:'% Total',key:'share',r:true}
+    ];
+  } else { // kitchen
+    rows = aggBy('kitchen', d=>d.city);
+    cols = [
+      {label:'Cocina',key:'key',type:'key'},{label:'Ciudad',key:'extra',type:'extra'},
+      {label:'Base Julio',key:'base',r:true},{label:'Ajustado',key:'adj',r:true},
+      {label:'Δ vs Base',key:'delta',r:true},{label:'Δ%',key:'dpct',r:true},{label:'% Total',key:'share',r:true}
+    ];
+  }
+  el.innerHTML = '<div class="pb">' + sumTableHTML(rows, cols, type==='plat'?'plat':type) + '</div>';
+}
+
+function setSumSort(tableId, idx) {
+  const st = sumSortState[tableId];
+  if (st[0]===idx) st[1]*=-1; else { st[0]=idx; st[1]=-1; }
+  renderSummary(tableId==='plat'?'plat':tableId);
+}
+
+// ── Detail table ───────────────────────────────────────
+function renderTable() {
+  const data = filteredData.length ? filteredData : allData;
+  if (!data.length) {
+    document.getElementById('tbl-wrap').innerHTML = '<div class="loading"><p>Sin datos con los filtros aplicados.</p></div>';
+    document.getElementById('pager').style.display='none'; return;
+  }
+  const sorted = [...data].sort((a,b) => {
+    if (sCol===0) return sDir*a.kitchen.localeCompare(b.kitchen);
+    if (sCol===1) return sDir*a.brand.localeCompare(b.brand);
+    if (sCol===2) return sDir*a.platform.localeCompare(b.platform);
+    if (sCol===3) return sDir*a.city.localeCompare(b.city);
+    if (sCol===4) { const pa=a.base>0?a.avg0/a.base:0, pb=b.base>0?b.avg0/b.base:0; return sDir*(pa-pb); }
+    if (sCol===5) return sDir*(a.base-b.base);
+    if (sCol===6) return sDir*(adjRow(a)-adjRow(b));
+    if (sCol===7) return sDir*((adjRow(a)-a.base)-(adjRow(b)-b.base));
+    return 0;
+  });
+  const start=(pg-1)*PG, page=sorted.slice(start,start+PG);
+  const hdrs=['Cocina','Marca','Plataforma','Ciudad','Avg Diario*','Base Julio','Ajustado','Δ vs Base'];
+  let h='<table class="dtbl"><thead><tr>';
+  hdrs.forEach((c,i) => {
+    const arr=sCol===i?(sDir===1?' ↑':' ↓'):'';
+    h+=`<th class="${i>=4?'r':''}" onclick="setSort(${i})">${c}${arr}</th>`;
+  });
+  h+='</tr></thead><tbody>';
+  page.forEach(row => {
+    const a=adjRow(row), d=a-row.base;
+    const dpct=row.base>0?d/row.base*100:0;
+    const dc=d>0.5?'dp':d<-0.5?'dn':'d0';
+    const avgSimple=Math.round(row.base/31);
+    h+=`<tr>
+      <td>${esc(row.kitchen)}</td>
+      <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(row.brand)}">${esc(row.brand)}</td>
+      <td><span class="tag ${platTag(row.platform)}">${esc(row.platform)}</span></td>
+      <td>${esc(row.city)}</td>
+      <td class="r">${fmtN(avgSimple)}</td>
+      <td class="r">${fmtN(row.base)}</td>
+      <td class="r adj">${fmtN(Math.round(a))}</td>
+      <td class="r ${dc}">${d>=0?'+':''}${fmtN(Math.round(d))}<br><small>${dpct>=0?'+':''}${dpct.toFixed(1)}%</small></td>
+    </tr>`;
+  });
+  h+='</tbody></table>';
+  document.getElementById('tbl-wrap').innerHTML=h;
+  const totalPgs=Math.ceil(sorted.length/PG);
+  document.getElementById('pager').style.display='flex';
+  document.getElementById('pg-info').textContent=`Pág. ${pg} / ${totalPgs}`;
+  document.getElementById('trow-count').textContent=sorted.length.toLocaleString('es');
+  document.getElementById('btn-p').disabled=pg===1;
+  document.getElementById('btn-n').disabled=pg>=totalPgs;
+}
+
+function setSort(i){if(sCol===i)sDir*=-1;else{sCol=i;sDir=-1;}renderTable();}
+function goPg(d){const m=Math.ceil((filteredData.length||allData.length)/PG);pg=Math.max(1,Math.min(m,pg+d));renderTable();}
+
+// ── CSV export ─────────────────────────────────────────
+function dlCSV() {
+  const data = filteredData.length ? filteredData : allData;
+  const hdr = 'Cocina,Marca,Plataforma,Ciudad,Avg_Dom,Avg_Lun,Avg_Mar,Avg_Mie,Avg_Jue,Avg_Vie,Avg_Sab,Base_Julio_DOW,Ajustado,Delta,Delta_Pct';
+  const rows = data.map(d => {
+    const a=Math.round(adjRow(d)), delta=a-d.base;
+    const dp=d.base>0?(delta/d.base*100).toFixed(2):'0';
+    return [`"${d.kitchen}"`,`"${d.brand}"`,`"${d.platform}"`,`"${d.city}"`,
+      d.avg0,d.avg1,d.avg2,d.avg3,d.avg4,d.avg5,d.avg6,
+      d.base,a,delta,dp].join(',');
+  });
+  const csv=[hdr,...rows].join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,﻿'+encodeURIComponent(csv);
+  a.download='presupuesto_julio_2026_mex.csv'; a.click();
+}
+
+// ── Panel toggle (lazy render summaries on open) ───────
+function togglePanel(id) {
+  const el=document.getElementById(id);
+  const t=document.getElementById(id+'-t');
+  const wasHidden=el.style.display==='none';
+  el.style.display=wasHidden?'':'none';
+  if(t) t.textContent=wasHidden?'▲':'▼';
+  // Lazy-render panels when opened
+  if (wasHidden) {
+    if (id==='sum-city')    renderSummary('city');
+    if (id==='sum-brand')   renderSummary('brand');
+    if (id==='sum-plat')    renderSummary('plat');
+    if (id==='sum-kitchen') renderSummary('kitchen');
+    if (id==='daily-panel') renderDailyBreakdown();
+  }
+}
+
+// ── Helpers ────────────────────────────────────────────
+function fmt(n) {
+  if(!n&&n!==0) return '—';
+  const s=n<0?'-':'', a=Math.abs(n);
+  if(a>=1e9) return s+'$'+(a/1e9).toFixed(2)+'B';
+  if(a>=1e6) return s+'$'+(a/1e6).toFixed(1)+'M';
+  if(a>=1e3) return s+'$'+(a/1e3).toFixed(0)+'K';
+  return s+'$'+a.toFixed(0);
+}
+function fmtN(n){
+  if(n===null||n===undefined) return '—';
+  return n.toLocaleString('es-MX');
+}
+function platTag(p){
+  return{Rappi:'t-rappi',DiDi:'t-didi',Uber:'t-uber',Justo:'t-justo',
+    FoodologyPOS:'t-pos',PedidosYa:'t-pedidos'}[p]||'t-pos';
+}
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+// ── Init ───────────────────────────────────────────────
+loadData();
+</script>
+</body>
+</html>
